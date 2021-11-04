@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import get from "lodash.get";
 
 const DB_NAME = process.env.NODE_ENV === "test" ? "TEST_DB" : "PROD_DB";
 
@@ -16,3 +17,5 @@ export const getUserByUsername = async (username) => {
 
 	return result;
 };
+
+export default { getUserByUsername };
