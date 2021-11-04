@@ -3,6 +3,7 @@ import db from "./db";
 import { expect } from "chai";
 import request from "supertest";
 import sinon from "sinon";
+
 describe("GET /users/:username", () => {
 	it("sends the correct response when a user with the username is valid", async () => {
 		const fakeData = {
@@ -21,6 +22,27 @@ describe("GET /users/:username", () => {
 			.expect(fakeData);
 
 		expect(stub.getCall(0).args[0]).to.equal("abc");
+
+		stub.restore();
+	});
+
+	it("sends the correct response when there is an error ", async () => {
+		const fakeError = { message: "Ya done goof sis! " };
+
+		const stub = sinon.stub(db, "getUserByUsername").throws(fakeError);
+
+		await request(app)
+			.get("/users/abc")
+			.expect(500)
+			.expect("Content-Type", /json/)
+			.expect(fakeError);
+
+		stub.restore();
+	});
+	it("returns the appropriate response when the user is not found ", async () => {
+		const stub = sinon.stub(db, "getUserByUsername").resolves(null);
+
+		await request(app).get("/users/def").expect(404);
 
 		stub.restore();
 	});
