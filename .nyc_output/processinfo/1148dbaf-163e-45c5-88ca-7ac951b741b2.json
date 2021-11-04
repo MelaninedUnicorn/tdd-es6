@@ -1,0 +1,1 @@
+{"parent":null,"pid":21967,"argv":["/usr/local/bin/node","/usr/local/bin/npm","run","test"],"execArgv":[],"cwd":"/home/mugisha/Code/tdd/tdd-server","time":1636038398989,"ppid":21956,"coverageFilename":"/home/mugisha/Code/tdd/tdd-server/.nyc_output/1148dbaf-163e-45c5-88ca-7ac951b741b2.json","externalId":"","uuid":"1148dbaf-163e-45c5-88ca-7ac951b741b2","files":[]}
